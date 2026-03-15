@@ -17,6 +17,10 @@ Route::prefix('contato')->group(function(){
         ->name('site.contato.store');
 
 });
+
+
+Route::get('/', [PrincipalController::class, 'principal'])->name('site.principal');
+Route::get('/sobre-nos', [SobreNosController::class, 'sobrenos'])->name('site.sobrenos');
 /*
 //Route::get('/contato', [ContatoController::class, 'index'])->name('site.contato');
 //Route::post('/contato', [ContatoController::class, 'store'])->name('site.contato.store');
@@ -25,8 +29,7 @@ Route::get('/contato/{id}', [ContatoController::class, 'show'])->name('site.cont
 Route::get('/contato/{id}/edit', [ContatoController::class, 'edit'])->name('site.contato.edit');
 Route::get('/contato/list', [ContatoController::class, 'list'])->name('site.contato.list');
 
-Route::get('/', [PrincipalController::class, 'principal'])->name('site.index');
-Route::get('/sobre-nos', [SobreNosController::class, 'sobrenos'])->name('site.sobrenos');
+
 
 
 Route::get('/teste/{p1}/{p2}',[TesteControler::class,'teste'])->name('site.teste');

@@ -1,18 +1,21 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Services\SiteContatoService;
 use App\Http\Requests\StoreContatoRequest;
 use App\Http\Resources\ContatoResource;
-
+use App\Services\MotivoContatoService;
 class ContatoController extends Controller
 {
     protected $service;
+    protected $serviceMotivo;
 
-    public function __construct(SiteContatoService $service)
+    public function __construct(SiteContatoService $service, MotivoContatoService $serviceMotivo)
     {
         $this->service = $service;
+        $this->serviceMotivo = $serviceMotivo;
     }
 
     /**
@@ -20,11 +23,12 @@ class ContatoController extends Controller
      */
     public function index()
     {
-                // API (JSON)
+        // API (JSON)
         // return ContatoResource::collection($contatos);
-
+            $motivo_contatos = $this->serviceMotivo->listar();
         // Blade
-        return view('site.contato.index');
+             return view('site.contato.index',['motivo_contatos'=> $motivo_contatos]);
+             
     }
     
     /**

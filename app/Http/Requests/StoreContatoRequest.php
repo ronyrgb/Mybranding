@@ -17,7 +17,7 @@ class StoreContatoRequest extends FormRequest
             'nome' => 'required|string|max:100',
             'telefone' => 'required|string|max:20',
             'email' => 'required|email|max:100',
-            'motivo_contato' => 'required|string|max:100',
+            'motivo_contat_id' => 'required|string|max:100',
             'mensagem' => 'required|string'
         ];
     }

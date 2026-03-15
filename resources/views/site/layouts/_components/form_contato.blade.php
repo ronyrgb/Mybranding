@@ -39,13 +39,16 @@
 @enderror
 <br>
 
-
-<select name="motivo_contato" class="{{$classe}}">
+<select name="motivo_contato_id" class="{{ $classe }}">
     <option value="">Qual o motivo do contato?</option>
-    <option value="1" {{ old('motivo_contato') == 1 ? 'selected' : '' }}>Dúvida</option>
-    <option value="2" {{ old('motivo_contato') == 2 ? 'selected' : '' }}>Elogio</option>
-    <option value="3" {{ old('motivo_contato') == 3 ? 'selected' : '' }}>Reclamação</option>
+
+    @foreach ($motivo_contatos as $motivo)
+        <option value="{{ $motivo->id }}" @selected(old('motivo_contato_id') == $motivo->id)>
+            {{ $motivo->motivo_contato }}
+        </option>
+    @endforeach
 </select>
+
 
 @error('motivo_contato')
     <span class="erro">{{ $message }}</span>
