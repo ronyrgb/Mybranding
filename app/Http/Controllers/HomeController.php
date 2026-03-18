@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
-class FornecedorController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return redirect()->route('admin.fornecedor');
+        return view('admin.home');
     }
 
     /**
@@ -57,8 +58,8 @@ class FornecedorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy()
     {
-        //
+        return redirect()->route('site.login');
     }
 }

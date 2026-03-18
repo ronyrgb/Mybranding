@@ -1,26 +1,35 @@
 <?php
 use App\Http\Controllers\ContatoController;
-use App\Http\Controllers\FornecedoresController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\SobreNosController;
-use App\Http\Controllers\TesteControler;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Metadata\Group;
+use App\Http\Middleware\LogAcessoMiddleware;
 
 
 Route::prefix('contato')->group(function(){
-
-    Route::get('/', [ContatoController::class,'index'])
-        ->name('site.contato');
-
-    Route::post('/', [ContatoController::class,'store'])
-        ->name('site.contato.store');
+    Route::get('/', [ContatoController::class,'index'])->name('site.contato');
+    Route::post('/', [ContatoController::class,'store'])->name('site.contato.store');
 
 });
 
 
-Route::get('/', [PrincipalController::class, 'principal'])->name('site.principal');
+Route::get('/', [PrincipalController::class, 'principal'])->name('site.principal')->middleware('log.acesso');
+//->middleware(LogAcessoMiddleware::class);
 Route::get('/sobre-nos', [SobreNosController::class, 'sobrenos'])->name('site.sobrenos');
+Route::get('/login/{erro?}', [LoginController::class, 'index'])->name('site.login');
+Route::post('/login', [LoginController::class,'store'])->name('site.login.store');
+
+
+
+
+
+
+
+
+
+
 /*
 //Route::get('/contato', [ContatoController::class, 'index'])->name('site.contato');
 //Route::post('/contato', [ContatoController::class, 'store'])->name('site.contato.store');
@@ -35,12 +44,12 @@ Route::get('/contato/list', [ContatoController::class, 'list'])->name('site.cont
 Route::get('/teste/{p1}/{p2}',[TesteControler::class,'teste'])->name('site.teste');
 
 Route::prefix('app')->group(function(){
-/*
+
         Route::get('/login', [LonginController::class, 'principal'])->name('site.login');
         Route::get('/clientes', [ClientesController::class, 'principal'])->('app.cliente');
         Route::get('/produtos', [ProdutosController::class, 'principal'])('app.produtos');
         
-*/
+
 /*Route::get('/fornecedores', [FornecedoresController::class, 'index'])->name('fornecedores');
 });
 
@@ -67,7 +76,6 @@ Route::get('/rota2',function(){
 
 //Route::redirect('/rota2', '/rota1');
 
-*/
 Route::fallback(function(){
         echo 'erro';
-        });
+        });*/

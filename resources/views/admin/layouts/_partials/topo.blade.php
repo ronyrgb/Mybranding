@@ -1,14 +1,15 @@
-        <div class="topo">
+<div class="topo">
+    <div class="logo">
+        <img src="{{ asset('img/logo.png') }}">
+    </div>
 
-            <div class="logo">
-                <img src="{{asset('img/logo.png')}}">
-            </div>
-
-            <div class="menu">
-                <ul>
-                    <li><a href="{{ route('site.index') }}">Principal</a></li>
-                    <li><a href="{{ route('site.sobrenos') }}">Sobre Nós</a></li>
-                    <li><a href="{{ route('site.contato') }}">Contato</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="menu">
+        <ul>
+            <li><a href="{{ route('admin.home') }}">Home</a></li>
+            <li><a href="{{ route('admin.cliente') }}">Cliente</a></li>
+            <li><a href="{{ route('admin.fornecedor') }}">Fornecedor</a></li>
+            <li><a href="{{ route('admin.produto') }}">Produto</a></li>
+            <li><a href="{{ route('admin.sair') }}">Sair</a></li>
+        </ul>
+    </div>
+</div>

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLoginRequest;
 use Illuminate\Http\Request;
 
-class FornecedorController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return redirect()->route('admin.fornecedor');
+        return view('site.index');
     }
 
     /**
@@ -25,9 +26,12 @@ class FornecedorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreLoginRequest $request)
     {
-        //
+
+    return redirect()
+        ->route('site.login.index')
+        ->with('success', 'Dados válidos!'); // opcional
     }
 
     /**
