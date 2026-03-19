@@ -2,16 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\SiteFornecedorService;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
 {
+
+   protected $service;
+
+    public function __construct(SiteFornecedorService $service)
+    {
+        $this->service = $service;
+       
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return redirect()->route('admin.fornecedor');
+       return view('admin.fornecedor.index');
     }
 
     /**
@@ -19,7 +29,7 @@ class FornecedorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.fornecedor.create');
     }
 
     /**
@@ -35,7 +45,7 @@ class FornecedorController extends Controller
      */
     public function show(string $id)
     {
-        //
+       return view('admin.fornecedor.show');
     }
 
     /**
