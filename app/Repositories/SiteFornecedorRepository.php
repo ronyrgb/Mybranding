@@ -12,4 +12,19 @@ class SiteFornecedorRepository extends SiteBaseRepository implements SiteFornece
     {
         parent::__construct($model);
     }
+    
+    
+    public function filter(array $filters)
+    {
+        return $this->model
+            ->filter($filters) // usa o scope do model
+            ->orderBy(
+                $filters['sort'] ?? 'nome',
+                $filters['direction'] ?? 'asc'
+            )
+            ->paginate($filters['per_page'] ?? 10);
+    }
+
+
+
 }

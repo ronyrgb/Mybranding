@@ -14,7 +14,12 @@ Route::prefix('admin')->group(function(){
         Route::get('/clientes', [ClienteController::class, 'index'])->name('admin.cliente');
         Route::get('/produtos', [ProdutoController::class, 'index'])->name('admin.produto');
         Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('admin.fornecedor');
-        Route::get('/fornecedores/adcionar', [FornecedorController::class, 'create'])->name('admin.fornecedor.create');
+        Route::get('/fornecedores/adicionar/{msg?}', [FornecedorController::class, 'create'])->name('admin.fornecedor.create');
+        Route::get('/fornecedores/editar/{id?}', [FornecedorController::class, 'edit'])->name('admin.fornecedor.editar');
+
         Route::post('/fornecedores/listar', [FornecedorController::class, 'show'])->name('admin.fornecedor.show');
         Route::post('/fornecedores/add', [FornecedorController::class, 'store'])->name('admin.fornecedor.store');
+
+        Route::put('/fornecedores/update', [FornecedorController::class, 'update'])->name('admin.fornecedor.update');
+
 });

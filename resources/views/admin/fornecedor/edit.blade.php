@@ -23,12 +23,14 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <form method="post" action="{{ route('admin.fornecedor.store') }}">
+                    <form method="post" action="{{ route('admin.fornecedor.update') }}">
                         @csrf
-                        <input type="text" name="nome" value="{{ old('nome') }}" placeholder="Nome" class="borda-preta">
+                        @method('PUT') 
+                        <input type="hidden" name="id" value="{{$fornecedor->id}}">
+                        <input type="text" name="nome" value="{{ $fornecedor->nome ?? old('nome') }}" placeholder="Nome" class="borda-preta">
                         {{ $errors->has('nome') ? $errors->first('nome') : '' }}
 
-                        <input type="text" name="site" value="{{ old('site') }}" placeholder="Site" class="borda-preta">
+                        <input type="text" name="site" value="{{ $fornecedor->site ??  old('site') }}" placeholder="Site" class="borda-preta">
                         {{ $errors->has('site') ? $errors->first('site') : '' }}
             <select name="uf" class="borda-preta">
                 <option value="">Selecione a UF</option>
@@ -49,17 +51,17 @@
 
                 @foreach($ufs as $sigla => $nome)
                     <option value="{{ $sigla }}"
-                        {{ old('uf') == $sigla ? 'selected' : '' }}>
+                        {{ (old('uf') ?? ($fornecedor->uf ?? '')) == $sigla ? 'selected' : '' }}>
                         {{ $nome }}
                     </option>
                 @endforeach
             </select>
 
             {{ $errors->has('uf') ? $errors->first('uf') : '' }}
-                        <input type="text" name="email" value="{{ old('email') }}" placeholder="E-mail" class="borda-preta">
+                        <input type="text" name="email" value="{{ $fornecedor->email ?? old('email') }}" placeholder="E-mail" class="borda-preta">
                         {{ $errors->has('email') ? $errors->first('email') : '' }}
 
-                        <button type="submit" class="borda-preta">Cadastrar</button>
+                        <button type="submit" class="borda-preta">Editar</button>
                     </form>
                 </div>
             </div>

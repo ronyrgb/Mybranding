@@ -45,6 +45,7 @@ class SiteFornecedorService
      */
     public function atualizar($id, array $data)
     {
+        unset($data['id']); 
         $dto = new SiteFornecedorDTO($data);
 
         return $this->repository->update($id, $dto->toArray());
@@ -65,4 +66,11 @@ class SiteFornecedorService
     {
         return $this->repository->findBy($conditions);
     }
+
+    public function filtrar(array $filters)
+    {
+        return $this->repository->filter($filters);
+    }
+
+
 }

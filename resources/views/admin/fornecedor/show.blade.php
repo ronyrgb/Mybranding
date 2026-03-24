@@ -17,28 +17,34 @@
             </ul>
         </div>
 
-        <div class="informacao-pagina">
-          
-            <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                <form method="post" action="{{ route('admin.fornecedor.store') }}">
-                    @csrf
-                    <input type="text" name="nome" value="{{ old('nome') }}" placeholder="Nome" class="borda-preta">
-                    {{ $errors->has('nome') ? $errors->first('nome') : '' }}
+    
+           <div style="width: 90%; margin-left:auto; margin-right:auto; margin-top:50px">
+            
+                <table style="width: 100%;">
+                    <thead>
+                        <th>Nome</th>
+                        <th>Site</th>
+                        <th>UF</th>
+                        <th>E-mail</th>
+                        <th>Excluir</th>
+                        <th>Editar</th>
+                    </thead>
+                    @foreach ($fornecedores as $fornecedor)
 
-                    <input type="text" name="site" value="{{ old('site') }}" placeholder="Site" class="borda-preta">
-                    {{ $errors->has('site') ? $errors->first('site') : '' }}
-
-                    <input type="text" name="uf" value="{{ old('uf') }}" placeholder="UF" class="borda-preta">
-                    {{ $errors->has('uf') ? $errors->first('uf') : '' }}
-
-                    <input type="text" name="email" value="{{ old('email') }}" placeholder="E-mail" class="borda-preta">
-                    {{ $errors->has('email') ? $errors->first('email') : '' }}
-
-                    <button type="submit" class="borda-preta">Cadastrar</button>
-                </form>
+                    <tr>
+                        <td>{{ $fornecedor->nome }}</td>
+                        <td>{{ $fornecedor->site }}</td>
+                        <td>{{ $fornecedor->uf }}</td>
+                        <td>{{ $fornecedor->email }}</td>
+                        <td>Excluir</td>
+                        <td><a href="{{route('admin.fornecedor.editar', $fornecedor->id)}}">Editar</a> <td>
+                    <tr>
+                    @endforeach
+            
+            
             </div>
-        </div>
 
-    </div>
+
+
 
 @endsection
